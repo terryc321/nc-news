@@ -13,11 +13,13 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+    const [topic, setTopic] = useState("all");
+    
     return (
             <div className="App">
-            <Navbar />
+            <Navbar setTopic={setTopic}/>
             <section>
-            <ArticleList />
+            <ArticleList topic={topic}/>
             </section>
             <Footer />
             </div>

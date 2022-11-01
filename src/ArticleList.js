@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 
 import { useState, useEffect } from "react";
 
-const ArticleList = (props) =>  {
+const ArticleList = ({topic}) =>  {
     const [isLoading, setIsLoading] = useState(false);
     const [articles, setArticles] = useState([]);
     
@@ -29,20 +29,20 @@ const ArticleList = (props) =>  {
     
         return (
             <Row xs={1} md={4} className="g-4">
-            {articles.map((article, idx) => (
+                {articles.filter(article => article.topic === topic || topic === "").map((article, idx) => (
                     <Col>
-                    <Card bg='success'>
+                    <Card key={idx} bg='success'>
                     <Card.Body>
                     <Card.Title>{article.title}</Card.Title>
                     <Card.Text></Card.Text>
+                    <div>{article.topic}</div>
                     </Card.Body>
                     </Card>
                     </Col>
             ))}
             </Row>
         );
-
-    
 };
 
 export default ArticleList;
+
