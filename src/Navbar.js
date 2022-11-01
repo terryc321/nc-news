@@ -14,17 +14,17 @@ function CollapsibleNavbar()  {
     }
     
     return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
       <Container>
         <Navbar.Brand href="#home">News Articles</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
 
-            <Link to="/articles/all" onClick={handleNavClick} className="btn btn-link">All Topics</Link>
-            <Link to="/articles/coding" onClick={handleNavClick} className="btn btn-link">Coding</Link>
-            <Link to="/articles/cooking" onClick={handleNavClick} className="btn btn-link">Cooking</Link>
-            <Link to="/articles/football" onClick={handleNavClick} className="btn btn-link">Football</Link>
+            <Nav.Link to="/articles/all" onClick={handleNavClick} className="btn btn-link">All Topics</Nav.Link>
+            <Nav.Link href="/articles/coding" onClick={handleNavClick} className="btn btn-link">Coding</Nav.Link>
+            <Link href="/articles/cooking" onClick={handleNavClick} className="btn btn-link">Cooking</Link>
+            <Link href="/articles/football" onClick={handleNavClick} className="btn btn-link">Football</Link>
             
           </Nav>
         </Navbar.Collapse>

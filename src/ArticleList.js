@@ -35,12 +35,16 @@ const ArticleList = (props) =>  {
     }, []); 
     
     if (isLoading) return <h3>Loading Articles...</h3>;
-    
+
+    function handleCardClick(event){
+        console.log(event.target.id);
+    }
+        
         return (
                 <Row xs={1} md={4} className="mt-2 g-4">
-                {articles.filter(article => article.topic === topic || topic === "all").map((article, idx) => (
+                { articles.map((article, idx) => (
                     <Col>
-                    <Card key={idx} bg='success'>
+                    <Card onClick={handleCardClick} style={{ cursor: "pointer" }} key={idx} bg='success'>
                     <Card.Body>
                     <Card.Title>{article.title}</Card.Title>
                     <Card.Text></Card.Text>
