@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import ArticleList from './ArticleList'
 import Header from './Header'
 import Footer from './Footer'
+import Navbar from './Navbar'
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
     return (
             <div className="App">
-            <Header />
+            <Navbar />
             <section>
             <ArticleList />
             </section>
