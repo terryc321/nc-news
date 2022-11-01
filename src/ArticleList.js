@@ -27,7 +27,7 @@ const ArticleList = ({topic}) =>  {
     if (isLoading) return <h3>Loading Articles...</h3>;
     
         return (
-            <Row xs={1} md={4} className="g-4">
+                <Row xs={1} md={4} className="mt-2 g-4">
                 {articles.filter(article => article.topic === topic || topic === "all").map((article, idx) => (
                     <Col>
                     <Card key={idx} bg='success'>
