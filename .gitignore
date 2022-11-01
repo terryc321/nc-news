@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+/Untitled-2022-10-31-1151.excalidraw
+/Untitled-2022-10-31-1151.svg
+
+# put trash in here
+/src/hidden
+
+# emacs
+/.projectile
+
