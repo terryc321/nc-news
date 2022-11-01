@@ -1,9 +1,10 @@
+import './Article.css';
 
-
-function Article() {
-  return (
-    <div className="Article">This is the Article</div>
-  );
+function Article(props) {
+    const {article} = props;
+    return (
+            <div className="article">{article.title}</div>
+    );
 }
 
 export default Article;

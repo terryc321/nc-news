@@ -2,7 +2,7 @@
 
 function Header() {
   return (
-    <div className="Header">This is the Header</div>
+    <header className="Header"><h1>News Articles</h1></header>
   );
 }
 

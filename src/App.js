@@ -5,16 +5,21 @@ import {ReactDOM } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
 import ArticleList from './ArticleList'
+import Header from './Header'
+import Footer from './Footer'
 
 import './App.css';
 
 function App() {
-  return (
-          <div className="App">
-          <h1> My Application </h1>
-          <ArticleList />
-    </div>
-  );
+    return (
+            <div className="App">
+            <Header />
+            <section>
+            <ArticleList />
+            </section>
+            <Footer />
+            </div>
+    );
 }
 
 export default App;
