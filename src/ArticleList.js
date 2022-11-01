@@ -15,8 +15,7 @@ const ArticleList = ({topic}) =>  {
     
     useEffect(() => {
         setIsLoading(true);        
-        
-        fetch(`https://mr-kipling-nc-news-backend.herokuapp.com/api/articles`)
+                fetch(`https://mr-kipling-nc-news-backend.herokuapp.com/api/articles`)
             .then((response) => response.json())
             .then((data) => {
                 const { articles } = data;
@@ -29,7 +28,7 @@ const ArticleList = ({topic}) =>  {
     
         return (
             <Row xs={1} md={4} className="g-4">
-                {articles.filter(article => article.topic === topic || topic === "").map((article, idx) => (
+                {articles.filter(article => article.topic === topic || topic === "all").map((article, idx) => (
                     <Col>
                     <Card key={idx} bg='success'>
                     <Card.Body>
