@@ -7,10 +7,11 @@ import { Routes, Route, useParams } from 'react-router-dom';
 
 import { Navigate } from "react-router-dom";
 
-import ArticleList from './ArticleList'
-import Header from './Header'
-import Footer from './Footer'
-import Navbar from './Navbar'
+import ArticleList from './ArticleList';
+import Header from './Header';
+import Footer from './Footer';
+import Navbar from './Navbar';
+import Article from './Article';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,10 +27,9 @@ function App() {
             <Navbar updateArticles={updateArticles} />
             <Routes>
             <Route exact path="/" element={<Navigate to="/articles/all" />} />
+            <Route path="/article/:article_id" element={ <Article /> } />
             <Route path="/articles" element={<Navigate to="/articles/all" />} />
-            <Route path="/articles/:topic" element={
-                    <ArticleList updateArticleList={updateArticleList}/>
-                                            } />
+            <Route path="/articles/:topic" element={ <ArticleList updateArticleList={updateArticleList}/> } />
             </Routes>
             <Footer />
         </>
