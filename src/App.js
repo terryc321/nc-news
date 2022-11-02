@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-import {ReactDOM } from "react-dom";
+import { ReactDOM } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route, useParams } from 'react-router-dom';
 
@@ -16,14 +16,19 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {    
+
+    const [updateArticleList, setUpdateArticleList] = useState(false);
+    const updateArticles = () => {
+        setUpdateArticleList(!updateArticleList);
+    }
     
     return (<>
-            <Navbar />
+            <Navbar updateArticles={updateArticles} />
             <Routes>
             <Route exact path="/" element={<Navigate to="/articles/all" />} />
             <Route path="/articles" element={<Navigate to="/articles/all" />} />
             <Route path="/articles/:topic" element={
-                                             <ArticleList />
+                    <ArticleList updateArticleList={updateArticleList}/>
                                             } />
             </Routes>
             <Footer />

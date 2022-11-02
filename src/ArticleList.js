@@ -15,6 +15,7 @@ const ArticleList = (props) =>  {
     const [isLoading, setIsLoading] = useState(false);
     const [articles, setArticles] = useState([]);
     let {topic} = useParams();
+    
     useEffect(() => {
         setIsLoading(true);
 
@@ -32,7 +33,7 @@ const ArticleList = (props) =>  {
                 setArticles(articles);
                 setIsLoading(false);                
             });
-    }, []); 
+    }, [props.updateArticleList]); 
     
     if (isLoading) return <h3>Loading Articles...</h3>;
 
