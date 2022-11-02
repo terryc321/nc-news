@@ -1,10 +1,10 @@
-import './ArticleList.css';
-import Article from './Article';
-
 
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+
+import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 
 import { useState, useEffect } from "react";
@@ -15,6 +15,7 @@ const ArticleList = (props) =>  {
     const [isLoading, setIsLoading] = useState(false);
     const [articles, setArticles] = useState([]);
     let {topic} = useParams();
+    let navigate = useNavigate();
     
     useEffect(() => {
         setIsLoading(true);
@@ -37,20 +38,22 @@ const ArticleList = (props) =>  {
     
     if (isLoading) return <h3>Loading Articles...</h3>;
 
-    function handleCardClick(event){
-        console.log(event.target.id);
+    function handleCardClick(article){        
+        let path = "/article/" + article.article_id;
+        navigate(path);
     }
         
         return (
                 <Row xs={1} md={4} className="mt-2 g-4">
                 { articles.map((article, idx) => (
                     <Col>
-                    <Card onClick={handleCardClick} style={{ cursor: "pointer" }} key={idx} bg='success'>
+                    <Card key={idx} bg='success'>
                     <Card.Body>
                     <Card.Title>{article.title}</Card.Title>
                     <Card.Text></Card.Text>
                     <div>{article.topic}</div>
-                    </Card.Body>
+                        </Card.Body>
+                        <Button variant="primary" onClick={()=> handleCardClick(article)}>Go to article</Button>
                     </Card>
                     </Col>
             ))}
@@ -59,4 +62,6 @@ const ArticleList = (props) =>  {
 };
 
 export default ArticleList;
+
+
 
