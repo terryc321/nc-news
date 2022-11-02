@@ -42,8 +42,6 @@ const CommentAdd = (props) =>  {
         }).then((response) => response.json())
             .then((data) => {
                 const comment = data.comment;
-                // console.log("comment added ");
-                // console.log(comment);
                 props.setRefreshComments(!props.refreshComments);
                 
             });
