@@ -47,19 +47,22 @@ const CommentAdd = (props) =>  {
             });
     };
 
+    
     function handleSubmit(event){
         let commentText = document.getElementById("commentText");
-        addComment(commentText.value);        
-        commentText.value = "";
+        if (commentText !== ""){
+            addComment(commentText.value);        
+            commentText.value = "";
+        }        
     }
 
     // form 
     return (
             <>
-        <Form>
+            <Form style={{ background: "orange" , color: "white" }}>
             <FormGroup>
-            <Label for="exampleText">-------- Add Your Comment Here -----------</Label>
-            <Input type="textarea" name="text" id="commentText" />
+            <Label for="exampleText">Add Your Comment Here</Label>
+            <Input type="textarea" placeholder="Let your thoughts be known here" name="text" id="commentText"  />
             </FormGroup>
             <Button variant="primary" onClick={handleSubmit}>Add Comment</Button>  
         </Form>    
