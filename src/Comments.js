@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
 import CommentAdd from './CommentAdd';
+import CommentDelete from './CommentDelete';
 
 import { useState, useEffect } from "react";
 import { useParams , useSearchParams } from "react-router-dom";
@@ -54,9 +55,12 @@ const Comments = (props) =>  {
                         <Card key={idx}>
                      <Card.Body>{comment.body} <br/>
                         {comment.created_at} &nbsp; {comment.votes} votes
+                        <CommentDelete comment_id={comment.comment_id}
+                                       refreshComments={refreshComments}
+                                        setRefreshComments={setRefreshComments}
                     
+                        />
                     </Card.Body>
-                    
                   </Card>
                 )
             }) }
