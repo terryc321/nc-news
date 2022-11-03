@@ -26,10 +26,13 @@ function App() {
     return (<>
             <Navbar updateArticles={updateArticles} />
             <Routes>
-            <Route exact path="/" element={<Navigate to="/articles/all" />} />
+
+            
+            
+            <Route exact path="/" element={<Navigate to="/articles" />} />            
+            <Route path="/articles" element={ <ArticleList updateArticleList={updateArticleList}/>  } />
             <Route path="/article/:article_id" element={ <Article /> } />
-            <Route path="/articles" element={<Navigate to="/articles/all" />} />
-            <Route path="/articles/:topic" element={ <ArticleList updateArticleList={updateArticleList}/> } />
+
             </Routes>
             <Footer />
         </>
@@ -38,4 +41,9 @@ function App() {
 
 export default App;
 
+
+// <Route path="/articles" element={<Navigate to="/articles/all" />} />
+// <Route path="/articles/:topic" element={ <ArticleList updateArticleList={updateArticleList}/> } />
+// <Route path="/articles" element={<ArticleList />} />
+            
 

@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
+import Comments from './Comments';
+import Votes from './Votes';
 
 import { useState, useEffect } from "react";
 import { useParams , useSearchParams } from "react-router-dom";
@@ -58,9 +60,11 @@ const Article = (props) =>  {
             <MDBCardBody>
             <MDBCardTitle>{article.title}</MDBCardTitle>
             <MDBCardText>{article.body}</MDBCardText>
-            <MDBBtn href='#'>Go somewhere</MDBBtn>
+            <Votes article={article} />
             </MDBCardBody>
             </MDBCard>
+            
+            <Comments article={article}/>    
     </> 
     );    
 };
