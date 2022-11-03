@@ -24,9 +24,22 @@ const ArticleList = (props) =>  {
         let params = (new URL(document.location)).searchParams;
         let sortby = params.get('sortby'); 
         let order = params.get('order'); 
+        let topic = params.get('topic'); 
 
-        console.log("sortby = " , sortby)
-        console.log("order = " , order)
+        // console.log("navbar. params = " , params);
+        // console.log("navbar. sortby = " , sortby);
+        // console.log("navbar. order = " , order);
+        // console.log("navbar . topic = " , topic);
+
+        if(!topic || topic === ""){
+            topic= "all";
+        }
+        if(!order || order === ""){
+            order= "desc";
+        }
+        if(!sortby || sortby === ""){
+            sortby= "date";
+        }
 
         // this is buggy
         
@@ -48,6 +61,9 @@ const ArticleList = (props) =>  {
             }
         }
         path = path + "?" + sort;
+
+        //console.log("fetch " , path);
+        
         
         fetch(path)
             .then((response) => response.json())
@@ -63,7 +79,7 @@ const ArticleList = (props) =>  {
     function handleCardClick(article){        
         let path = "/article/" + article.article_id;
         navigate(path);
-    }
+     }
         
         return (
                 <Row xs={1} md={4} className="mt-2 g-4">
@@ -73,7 +89,7 @@ const ArticleList = (props) =>  {
                     <Card.Body>
                     <Card.Title>{article.title}</Card.Title>
                     <Card.Text></Card.Text>
-                        <div>{article.topic} &nbsp; {article.created_at}</div>
+                        <div>{article.topic} &nbsp; {article.created_at} &nbsp; votes {article.votes} &nbsp; comments {article.comment_count}</div>
                         </Card.Body>
                         <Button variant="primary" onClick={()=> handleCardClick(article)}>Go to article</Button>
                     </Card>
