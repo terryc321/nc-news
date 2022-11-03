@@ -5,32 +5,24 @@ import Row from 'react-bootstrap/Row';
 
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
-
-
 import { useState, useEffect } from "react";
 import { useParams , useSearchParams } from "react-router-dom";
-
-
 
 const ArticleList = (props) =>  {
     const [isLoading, setIsLoading] = useState(false);
     const [articles, setArticles] = useState([]);
-    let {topic} = useParams();
+
     let navigate = useNavigate();
+
+    let params = (new URL(document.location)).searchParams;
+    let sortby = params.get('sortby'); 
+    let order = params.get('order'); 
+    let topic = params.get('topic'); 
 
     
     useEffect(() => {
 
-        let params = (new URL(document.location)).searchParams;
-        let sortby = params.get('sortby'); 
-        let order = params.get('order'); 
-        let topic = params.get('topic'); 
-
-        // console.log("navbar. params = " , params);
-        // console.log("navbar. sortby = " , sortby);
-        // console.log("navbar. order = " , order);
-        // console.log("navbar . topic = " , topic);
-
+        
         if(!topic || topic === ""){
             topic= "all";
         }
@@ -38,10 +30,9 @@ const ArticleList = (props) =>  {
             order= "desc";
         }
         if(!sortby || sortby === ""){
-            sortby= "date";
+            sortby= "created_at";
         }
 
-        // this is buggy
         
         let sort = `sortby=${sortby}&order=${order}`;
         if(!sortby){
@@ -64,7 +55,6 @@ const ArticleList = (props) =>  {
 
         //console.log("fetch " , path);
         
-        
         fetch(path)
             .then((response) => response.json())
             .then((data) => {
@@ -79,11 +69,18 @@ const ArticleList = (props) =>  {
     function handleCardClick(article){        
         let path = "/article/" + article.article_id;
         navigate(path);
-     }
+    }
+    
+    if (sortby === "date"){
+        sortby = "created_at";
+    }
+        
+    const sortfn = (a,b) => a[sortby] - b[sortby];
+    const sorted = order === "desc" ? articles.sort(sortfn).reverse() : articles.sort(sortfn) ;
         
         return (
                 <Row xs={1} md={4} className="mt-2 g-4">
-                { articles.map((article, idx) => (
+                { sorted.map((article, idx) => (
                     <Col>
                     <Card key={idx} bg='success'>
                     <Card.Body>
