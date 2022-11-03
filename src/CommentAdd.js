@@ -56,7 +56,6 @@ const CommentAdd = (props) =>  {
         }        
     }
 
-    // form 
     return (
             <>
             <Form style={{ background: "orange" , color: "white" }}>

@@ -26,15 +26,6 @@ function CollapsibleNavbar(props)  {
         props.updateArticles();
     }
 
-    // const sortDateAsc = () => {
-    //     navigate("?sortby=date&order=asc");
-    //     props.updateArticles();
-    // }
-    
-    // const sortDateDesc = () => {
-    //     navigate("?sortby=date&order=desc");
-    //     props.updateArticles();
-    // }
     function encodeURLParams(searchObj){
         const {topic , order , sortby } = searchObj;
         return `/articles?topic=${topic}&sortby=${sortby}&order=${order}`;
@@ -45,11 +36,6 @@ function CollapsibleNavbar(props)  {
         let sortby = params.get('sortby'); 
         let order = params.get('order'); 
         let topic = params.get('topic'); 
-
-        // console.log("navbar. params = " , params);
-        // console.log("navbar. sortby = " , sortby);
-        // console.log("navbar. order = " , order);
-        // console.log("navbar . topic = " , topic);
 
         if(!topic || topic === ""){
             topic= "all";
@@ -73,16 +59,13 @@ function CollapsibleNavbar(props)  {
     
     function selectSort(s , o){
         let search = decodeURLParams();
-        //console.log("sort search=" , search)
         search = {...search , sortby : s , order : o} ;
-        //console.log("sort searchB=" , search)
         const url = encodeURLParams(search);
         return url;
     }
 
     const dumbClick = (event) => {
         event.preventDefault();
-        // console.log("target.value" , event.target.value);
         navigate(event.target.value);
         props.updateArticles();
     }
@@ -176,15 +159,5 @@ export default CollapsibleNavbar;
 
 
 
-    // <img width={30} height={30} src={up_arrow} alt="up arrow" />
-// <img width={50} height={50} src={down_arrow} padding={0} margin={0} alt="down arrow" />
- 
-            // <Button value={selectSort("date","asc")} onClick={dumbClick} >date asc</Button>
-            // <Button value={selectSort("date","desc")} onClick={dumbClick} >date desc</Button>
 
-            // <Button value={selectSort("comment_count","asc")} onClick={dumbClick} >comments asc</Button>
-            // <Button value={selectSort("comment_count","desc")} onClick={dumbClick} >comments desc</Button>
 
-            // <Button value={selectSort("votes","asc")} onClick={dumbClick} >votes asc</Button>
-            // <Button value={selectSort("votes","desc")} onClick={dumbClick} >votes desc</Button>
-       
