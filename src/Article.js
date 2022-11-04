@@ -1,16 +1,17 @@
 
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+//import Card from 'react-bootstrap/Card';
+//import Col from 'react-bootstrap/Col';
+//import Row from 'react-bootstrap/Row';
 
-import { useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+//import { useNavigate } from "react-router-dom";
+//import Button from 'react-bootstrap/Button';
 
 import Comments from './Comments';
 import Votes from './Votes';
 
 import { useState, useEffect } from "react";
-import { useParams , useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+//import { useSearchParams } from "react-router-dom";
 
 import React from 'react';
 import {
@@ -18,9 +19,9 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-    MDBCardImage,
+//    MDBCardImage,
     MDBCardHeader,
-    MDBBtn,
+//    MDBBtn,
 } from 'mdb-react-ui-kit';
 
 
@@ -44,7 +45,7 @@ const Article = (props) =>  {
                 setArticle(incoming);
                 setIsLoading(false);
             });
-    }, []); 
+    },[article_id]); 
     
     if (isLoading) return <h3>Loading Article...</h3>;
 

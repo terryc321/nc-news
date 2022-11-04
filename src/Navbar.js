@@ -5,16 +5,15 @@ import down_arrow from './down.jpeg';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
 
-import Card from 'react-bootstrap/Card';
+// import Card from 'react-bootstrap/Card';
 
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+// import Button from 'react-bootstrap/Button';
+// import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
-import { useParams , useSearchParams } from "react-router-dom";
-
+// import { useParams , useSearchParams } from "react-router-dom";
 
 function CollapsibleNavbar(props)  {
 
@@ -27,13 +26,13 @@ function CollapsibleNavbar(props)  {
     }
 
     function encodeURLParams(searchObj){
-        const {topic , order , sortby } = searchObj;
-        return `/articles?topic=${topic}&sortby=${sortby}&order=${order}`;
+        const {topic , order , sort_by } = searchObj;
+        return `/articles?topic=${topic}&sort_by=${sort_by}&order=${order}`;
     }
     
     function decodeURLParams(){
         let params = (new URL(document.location)).searchParams;
-        let sortby = params.get('sortby'); 
+        let sort_by = params.get('sort_by'); 
         let order = params.get('order'); 
         let topic = params.get('topic'); 
 
@@ -43,10 +42,10 @@ function CollapsibleNavbar(props)  {
         if(!order || order === ""){
             order= "desc";
         }
-        if(!sortby || sortby === ""){
-            sortby= "date";
+        if(!sort_by || sort_by === ""){
+            sort_by= "created_at";
         }
-        return { topic , sortby , order };
+        return { topic , sort_by , order };
     }
         
     
@@ -58,17 +57,23 @@ function CollapsibleNavbar(props)  {
     }
     
     function selectSort(s , o){
+
+        let s2 = s;
+        if (s === "date"){
+            s2 = "created_at";
+        }
+        
         let search = decodeURLParams();
-        search = {...search , sortby : s , order : o} ;
+        search = {...search , sort_by : s2 , order : o} ;
         const url = encodeURLParams(search);
         return url;
     }
 
-    const dumbClick = (event) => {
-        event.preventDefault();
-        navigate(event.target.value);
-        props.updateArticles();
-    }
+    // const dumbClick = (event) => {
+    //     event.preventDefault();
+    //     navigate(event.target.value);
+    //     props.updateArticles();
+    // }
 
     
     

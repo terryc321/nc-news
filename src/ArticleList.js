@@ -6,63 +6,75 @@ import Row from 'react-bootstrap/Row';
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from "react";
-import { useParams , useSearchParams } from "react-router-dom";
+//import { useParams , useSearchParams } from "react-router-dom";
+
+
+const fetchPath = (params) => {
+    let sort_by = params.get('sort_by'); 
+    let order = params.get('order'); 
+    let topic = params.get('topic');
+    let result = {sort_by , order , topic};
+    
+    //console.log("params = " , params , " : sort_by = " , sort_by , " : order=" , order , " : topic=" , topic);
+    
+    if(!topic || topic === ""){
+        result.topic= "all";
+    }
+    if(!order || order === ""){
+        result.order= "desc";
+    }
+    if(!sort_by || sort_by === ""){
+        result.sort_by= "created_at";
+    }
+
+    // does api use ?sort_by= or ?sort_by=
+    //
+    let sort = `sort_by=${sort_by}&order=${order}`;
+    if(!sort_by){
+        sort = "";
+    }    
+    
+    let path = "";
+    if (topic === "all"){
+        path = `https://mr-kipling-nc-news-backend.herokuapp.com/api/articles`;
+    }
+    else {
+        path = `https://mr-kipling-nc-news-backend.herokuapp.com/api/articles`;
+        if(sort !== ""){
+            sort = sort + "&topic=" + topic;   
+        }
+    }
+    path = path + "?" + sort;
+    result.path = path;    
+    
+    if (result.sort_by) result.sort_by.toLowerCase();
+    if (result.order) result.order.toLowerCase();
+    if (result.topic) result.topic.toLowerCase();
+    if (result.path) result.path.toLowerCase();
+    
+    //console.log("fetch " , path);
+    return result;
+}
+
+
 
 const ArticleList = (props) =>  {
     const [isLoading, setIsLoading] = useState(false);
     const [articles, setArticles] = useState([]);
-
-    let navigate = useNavigate();
-
-    let params = (new URL(document.location)).searchParams;
-    let sortby = params.get('sortby'); 
-    let order = params.get('order'); 
-    let topic = params.get('topic'); 
-
+    let navigate = useNavigate();    
+    const params = (new URL(document.location)).searchParams;
+    const fixed = fetchPath(params);        
     
     useEffect(() => {
-
-        
-        if(!topic || topic === ""){
-            topic= "all";
-        }
-        if(!order || order === ""){
-            order= "desc";
-        }
-        if(!sortby || sortby === ""){
-            sortby= "created_at";
-        }
-
-        
-        let sort = `sortby=${sortby}&order=${order}`;
-        if(!sortby){
-            sort = "";
-        }
-        
         setIsLoading(true);
-
-        let path = "";
-        if (topic === "all"){
-            path = `https://mr-kipling-nc-news-backend.herokuapp.com/api/articles`;
-        }
-        else {
-            path = `https://mr-kipling-nc-news-backend.herokuapp.com/api/articles`;
-            if(sort !== ""){
-                sort = sort + "&topic=" + topic;   
-            }
-        }
-        path = path + "?" + sort;
-
-        //console.log("fetch " , path);
-        
-        fetch(path)
+        fetch(fixed.path)
             .then((response) => response.json())
             .then((data) => {
                 const { articles } = data;
                 setArticles(articles);
                 setIsLoading(false);                
             });
-    }, [props.updateArticleList]); 
+    }, [props.updateArticleList , fixed.path]); 
     
     if (isLoading) return <h3>Loading Articles...</h3>;
 
@@ -71,16 +83,13 @@ const ArticleList = (props) =>  {
         navigate(path);
     }
     
-    if (sortby === "date"){
-        sortby = "created_at";
-    }
-        
-    const sortfn = (a,b) => a[sortby] - b[sortby];
-    const sorted = order === "desc" ? articles.sort(sortfn).reverse() : articles.sort(sortfn) ;
+    // client side sorting -- replace sorted with articles when confident backend sorts
+    // const sortfn = (a,b) => a[fixed.sort_by] - b[fixed.sort_by];
+    // const sorted = fixed.order === "desc" ? articles.sort(sortfn).reverse() : articles.sort(sortfn) ;
         
         return (
                 <Row xs={1} md={4} className="mt-2 g-4">
-                { sorted.map((article, idx) => (
+                { articles.map((article, idx) => (
                     <Col>
                     <Card key={idx} bg='success'>
                     <Card.Body>

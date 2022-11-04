@@ -1,24 +1,24 @@
 
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+// import Card from 'react-bootstrap/Card';
+// import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
 
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
-import { useState, useEffect } from "react";
-import { useParams , useSearchParams } from "react-router-dom";
+// import { useState, useEffect } from "react";
+// import { useParams , useSearchParams } from "react-router-dom";
 
 import React from 'react';
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-    MDBCardImage,
-    MDBCardHeader,
-    MDBBtn,
-} from 'mdb-react-ui-kit';
+// import {
+//   MDBCard,
+//   MDBCardBody,
+//   MDBCardTitle,
+//   MDBCardText,
+//     MDBCardImage,
+//     MDBCardHeader,
+//     MDBBtn,
+// } from 'mdb-react-ui-kit';
 
 
 const Votes = (props) =>  {

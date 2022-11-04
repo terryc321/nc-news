@@ -1,27 +1,26 @@
 
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
-import { useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+// import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
+// import { useNavigate } from "react-router-dom";
+// import Button from 'react-bootstrap/Button';
 
 import CommentAdd from './CommentAdd';
 import CommentDelete from './CommentDelete';
 
 import { useState, useEffect } from "react";
-import { useParams , useSearchParams } from "react-router-dom";
+// import { useParams , useSearchParams } from "react-router-dom";
 
 import React from 'react';
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-    MDBCardImage,
-    MDBCardHeader,
-    MDBBtn,
-} from 'mdb-react-ui-kit';
+// import {
+//   MDBCard,
+//   MDBCardBody,
+//   MDBCardTitle,
+//   MDBCardText,
+//     MDBCardImage,
+//     MDBCardHeader,
+//     MDBBtn,
+// } from 'mdb-react-ui-kit';
 
 
 const Comments = (props) =>  {
@@ -44,7 +43,7 @@ const Comments = (props) =>  {
                 setIsLoading(false);
                 console.log("comments = " , comments);
             });
-    }, [refreshComments]); 
+    }, [refreshComments, article.article_id]); 
     
     if (isLoading) return <h3>Loading Comments...</h3>;
 

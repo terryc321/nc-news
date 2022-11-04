@@ -1,30 +1,34 @@
 
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+//import Card from 'react-bootstrap/Card';
+//import Col from 'react-bootstrap/Col';
+//import Row from 'react-bootstrap/Row';
 
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 //import Button from 'react-bootstrap/Button';
 
-import { useState, useEffect } from "react";
-import { useParams , useSearchParams } from "react-router-dom";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+//import { useState } from "react";
+//import { useEffect } from "react";
+
+//import { useParams , useSearchParams } from "react-router-dom";
+//import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
 
 import React from 'react';
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-    MDBCardImage,
-    MDBCardHeader,
-    MDBBtn,
-} from 'mdb-react-ui-kit';
+// import {
+// //  MDBCard,
+// //  MDBCardBody,
+// //  MDBCardTitle,
+// //  MDBCardText,
+// //    MDBCardImage,
+// //    MDBCardHeader,
+// //    MDBBtn,
+// } from 'mdb-react-ui-kit';
 
 
 const CommentAdd = (props) =>  {
-    const [isLoading, setIsLoading] = useState(false);
-    const [comments, setComments] = useState([]);
+//    const [isLoading, setIsLoading] = useState(false);
+//    const [comments, setComments] = useState([]);
 
     const {article} = props;
 
@@ -41,7 +45,7 @@ const CommentAdd = (props) =>  {
             },
         }).then((response) => response.json())
             .then((data) => {
-                const comment = data.comment;
+                //const comment = data.comment;
                 props.setRefreshComments(!props.refreshComments);
                 
             });

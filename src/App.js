@@ -1,14 +1,14 @@
 import React from "react";
-import { useEffect, useState } from "react";
-
-import { ReactDOM } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route, useParams } from 'react-router-dom';
-
+import { useState } from "react";
+//import { useEffect } from "react";
+//import { ReactDOM } from "react-dom";
+//import { BrowserRouter } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
+//import { useParams } from 'react-router-dom';
 import { Navigate } from "react-router-dom";
 
 import ArticleList from './ArticleList';
-import Header from './Header';
+//import Header from './Header';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Article from './Article';
@@ -26,13 +26,11 @@ function App() {
     return (<>
             <Navbar updateArticles={updateArticles} />
             <Routes>
-
-            
-            
             <Route exact path="/" element={<Navigate to="/articles" />} />            
             <Route path="/articles" element={ <ArticleList updateArticleList={updateArticleList}/>  } />
             <Route path="/article/:article_id" element={ <Article /> } />
 
+            
             </Routes>
             <Footer />
         </>
